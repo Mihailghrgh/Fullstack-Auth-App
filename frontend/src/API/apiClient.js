@@ -2,9 +2,8 @@ import axios from "axios";
 import { redirect } from "next/navigation";
 
 const options = {
-  baseURL: "https://fullstack-auth-app-production.up.railway.app/",
+  baseURL: process.env.BACKEND_URL,
 };
-
 const API = axios.create(options);
 
 API.interceptors.response.use(

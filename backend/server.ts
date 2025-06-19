@@ -15,7 +15,7 @@ const port = 5000;
 
 app.use(
   cors({
-    origin: "https://fullstack-auth-app-six.vercel.app/",
+    origin: process.env.FRONTEND_URL as string,
     credentials: true,
   })
 );
