@@ -53,7 +53,7 @@ export function ProfileForm() {
       console.log(response);
       
       if (response.status === 200) {
-        route.push("/");
+        route.push("/auth/user");
       }
     } catch (error) {
       console.log(error);
