@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.authRoutes = void 0;
+const express_1 = require("express");
+const auth_controller_1 = require("../controller/auth.controller");
+const auth_controller_2 = require("../controller/auth.controller");
+const auth_controller_3 = require("../controller/auth.controller");
+const auth_controller_4 = require("../controller/auth.controller");
+exports.authRoutes = (0, express_1.Router)();
+exports.authRoutes.post("/register", auth_controller_1.registerHandler);
+exports.authRoutes.post("/login", auth_controller_1.loginHandler);
+exports.authRoutes.get("/logout", auth_controller_3.logoutHandler);
+exports.authRoutes.get("/refresh", auth_controller_1.refreshHandler);
+exports.authRoutes.get("/email/verify/:code", auth_controller_2.verifyEmailHandler);
+exports.authRoutes.post("/password/forgot", auth_controller_1.forgotPasswordHandler);
+exports.authRoutes.post("/password/reset", auth_controller_1.resetPasswordHandler);
+exports.authRoutes.get("/password/check", auth_controller_4.checkPasswordCodeHandler);
