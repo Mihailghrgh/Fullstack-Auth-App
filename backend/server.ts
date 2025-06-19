@@ -9,14 +9,13 @@ import { userRoutes } from "./routes/user.route";
 import { sessionRoutes } from "./routes/session.route";
 import dotenv from "dotenv";
 
-
 dotenv.config();
 const app = express();
 const port = 5000;
 
 app.use(
   cors({
-    origin: "http://localhost:3000", //"http://localhost:3000" (Next.js frontend)
+    origin: "https://fullstack-auth-app-six.vercel.app/",
     credentials: true,
   })
 );

@@ -2,7 +2,7 @@ import axios from "axios";
 import { redirect } from "next/navigation";
 
 const options = {
-  baseURL: "http://localhost:5000",
+  baseURL: "https://fullstack-auth-app-production.up.railway.app/",
 };
 
 const API = axios.create(options);
