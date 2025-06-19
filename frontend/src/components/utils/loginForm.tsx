@@ -43,8 +43,6 @@ export function ProfileForm() {
   const route = useRouter();
 
   async function onSubmit(values: z.infer<typeof loginFormSchema>) {
-    console.log(values);
-
     try {
       const data = {
         email: values.email,

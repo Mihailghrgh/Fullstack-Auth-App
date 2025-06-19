@@ -2,7 +2,7 @@ import axios from "axios";
 import { redirect } from "next/navigation";
 
 const options = {
-  baseURL: process.env.BACKEND_URL,
+  baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
 };
 const API = axios.create(options);
 
