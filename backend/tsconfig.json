@@ -4,6 +4,7 @@
       "module": "commonjs" /* Specify what module code is generated. */,
       "esModuleInterop": true,
       "strict": true,
+      "outDir": "build",
       "skipLibCheck": true,
       "paths": {
         "@/*": ["./*"]
