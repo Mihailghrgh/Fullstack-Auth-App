@@ -20,6 +20,7 @@ import { useRouter } from "next/navigation";
 import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { useCreateError } from "./store";
+
 type ErrorMsg = {
   status: number;
   message: string;

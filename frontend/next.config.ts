@@ -1,11 +1,7 @@
 // next.config.js
 
-import { webpack } from "next/dist/compiled/webpack/webpack";
-import { config } from "next/dist/build/templates/pages";
 import path from "path";
 const nextConfig = {
-  turbopack: false,
-
   eslint: {
     ignoreDuringBuilds: true,
   },
