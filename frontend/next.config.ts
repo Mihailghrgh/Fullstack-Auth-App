@@ -1,13 +1,21 @@
 // next.config.js
+
+import { webpack } from "next/dist/compiled/webpack/webpack";
+import { config } from "next/dist/build/templates/pages";
+import path from "path";
 const nextConfig = {
   experimental: {
-    turbo: false,
+    turbo: { enabled: false },
   },
   eslint: {
     ignoreDuringBuilds: true,
   },
   typescript: {
     ignoreBuildErrors: true,
+  },
+  webpack: (config) => {
+    config.resolve.alias["@"] = path.resolve(__dirname, "src");
+    return config;
   },
   images: {
     remotePatterns: [

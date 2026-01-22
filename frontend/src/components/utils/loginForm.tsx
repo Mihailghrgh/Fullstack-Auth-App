@@ -41,7 +41,7 @@ export function ProfileForm() {
   const { clearError } = useCreateError();
   useEffect(() => {
     clearError();
-  },[]);
+  }, []);
   const form = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
