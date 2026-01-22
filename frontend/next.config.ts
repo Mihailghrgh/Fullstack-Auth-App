@@ -4,9 +4,8 @@ import { webpack } from "next/dist/compiled/webpack/webpack";
 import { config } from "next/dist/build/templates/pages";
 import path from "path";
 const nextConfig = {
-  experimental: {
-    turbo: { enabled: false },
-  },
+  turbopack: false,
+
   eslint: {
     ignoreDuringBuilds: true,
   },
