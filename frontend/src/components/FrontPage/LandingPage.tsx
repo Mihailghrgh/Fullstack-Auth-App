@@ -36,15 +36,7 @@ export default function LandingPage() {
               <Link href="/auth/user">Get Started</Link>
             </Button>
           </div>
-          <div className="flex-1 flex justify-center">
-            <Image
-              src="/auth.png"
-              alt="Authentication illustration"
-              className="rounded-lg shadow-md"
-              width={400}
-              height={300}
-            />
-          </div>
+          <div className="flex-1 flex justify-center"></div>
         </div>
       </section>
 
