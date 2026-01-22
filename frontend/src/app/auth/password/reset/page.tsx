@@ -1,5 +1,3 @@
-"use server";
-
 import ErrorBlock from "@/components/utils/ErrorBlock";
 import ResetPasswordForm from "@/components/utils/resetPasswordForm";
 import { checkResetCode } from "@/lib/api";

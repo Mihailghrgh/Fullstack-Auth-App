@@ -1,4 +1,3 @@
-"use server";
 import ForgotPasswordPage from "@/components/AuthPage/ForgotPassword";
 
 function page() {
