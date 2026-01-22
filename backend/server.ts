@@ -15,9 +15,12 @@ const port = 5000;
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL as string,
+    origin: [
+      "http://localhost:3000",
+      "https://fullstack-auth-app-six.vercel.app",
+    ],
     credentials: true,
-  })
+  }),
 );
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));

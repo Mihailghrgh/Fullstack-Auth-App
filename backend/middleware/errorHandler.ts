@@ -13,6 +13,8 @@ const handleZodError = (res: Response, error: z.ZodError) => {
 };
 
 const handleAppError = (res: Response, error: AppError) => {
+  console.log("Error is here ", error);
+
   return res
     .status(error.statusCode)
     .json({ message: error.message, errorCode: error.errorCode });
