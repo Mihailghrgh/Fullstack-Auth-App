@@ -1,4 +1,3 @@
-"use server"
 import VerificationSuccess from "@/components/AuthPage/VerifyEmail";
 
 export const dynamic = 'force-dynamic';
