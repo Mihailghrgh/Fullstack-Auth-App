@@ -38,7 +38,7 @@ export default function LandingPage() {
           </div>
           <div className="flex-1 flex justify-center">
             <Image
-              src="auth.png"
+              src="/auth.png"
               alt="Authentication illustration"
               className="rounded-lg shadow-md"
               width={400}
