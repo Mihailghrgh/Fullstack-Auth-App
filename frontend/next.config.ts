@@ -12,9 +12,7 @@ const nextConfig = {
     config.resolve.alias["@"] = path.resolve(__dirname, "src");
     return config;
   },
-  experimental: {
-    dynamicIO: true,
-  },
+
   images: {
     remotePatterns: [
       {
