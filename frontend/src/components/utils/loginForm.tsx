@@ -17,7 +17,13 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { login } from "@/lib/api";
 import { useRouter } from "next/navigation";
-
+import axios, { AxiosError } from "axios";
+import { useEffect, useState } from "react";
+import { useCreateError } from "./store";
+type ErrorMsg = {
+  status: number;
+  message: string;
+};
 export const loginFormSchema = z.object({
   email: z
     .string()
@@ -31,7 +37,11 @@ export const loginFormSchema = z.object({
 });
 
 export function ProfileForm() {
-  // 1. Define your form.
+  const [errMsg, setErrMsg] = useState<string>("");
+  const { clearError } = useCreateError();
+  useEffect(() => {
+    clearError();
+  },[]);
   const form = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
@@ -51,12 +61,26 @@ export function ProfileForm() {
       };
       const response = await login(data);
       console.log(response);
-      
+
       if (response.status === 200) {
         route.push("/auth/user");
+        useCreateError.getState().clearError();
       }
-    } catch (error) {
+
+      if (axios.isAxiosError(response) || response.status === 401) {
+        console.log("Error occurred");
+        setErrMsg("Error occurred");
+      }
+    } catch (error: unknown) {
       console.log(error);
+
+      if (axios.isAxiosError(error)) {
+        const status = error.response?.status ?? 500;
+        const message = error.response?.data?.message ?? "Something went wrong";
+        useCreateError.getState().setErrorObject(status, message);
+      } else {
+        useCreateError.getState().setErrorObject(500, "Unknown error occurred");
+      }
     }
   }
 

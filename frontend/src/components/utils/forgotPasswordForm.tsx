@@ -1,7 +1,7 @@
 "use client";
 
 import { z } from "zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -26,7 +26,8 @@ import {
 } from "../ui/form";
 import { TriangleAlert } from "lucide-react";
 import ResetPasswordConfirmation from "./resetPasswordSuccess";
-
+import { useCreateError } from "./store";
+import axios from "axios";
 const forgotPasswordSchema = z.object({
   email: z
     .string()
@@ -36,26 +37,36 @@ const forgotPasswordSchema = z.object({
 });
 
 function ForgotPasswordForm() {
-  const [error, setError] = useState(false);
   const [activePage, setActivePage] = useState<boolean>(false);
-
+  const error = useCreateError((state) => state.error);
+  const clearError = useCreateError((state) => state.clearError);
   const forgotPasswordForm = useForm<z.infer<typeof forgotPasswordSchema>>({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: { email: "" },
   });
 
+  useEffect(() => {
+    clearError();
+  }, []);
+
   const handleFormSubmit = async (
-    values: z.infer<typeof forgotPasswordSchema>
+    values: z.infer<typeof forgotPasswordSchema>,
   ) => {
     try {
       await forgotPassword(values);
       setActivePage(true);
     } catch (error) {
+      useCreateError.getState().clearError();
       console.log(error);
-      setError(true);
-
-      if (error instanceof Error) {
-        console.log(error);
+      const status = error.response?.status ?? 500;
+      const message = error.response?.data?.message ?? "Something went wrong";
+      useCreateError.getState().setErrorObject(status, message);
+      // setErrorMessage(error.message );
+      if (axios.isAxiosError(error)) {
+        const status = error.response?.status ?? 500;
+        const message = error.response?.data?.message ?? "Something went wrong";
+        console.log("triggered");
+        useCreateError.getState().setErrorObject(status, message);
       }
     }
   };
@@ -84,7 +95,6 @@ function ForgotPasswordForm() {
             <form
               onSubmit={forgotPasswordForm.handleSubmit(handleFormSubmit)}
               className="space-y-2"
-              onChange={() => setError(false)}
             >
               <FormField
                 control={forgotPasswordForm.control}
