@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import auth from "@/public/auth.png";
 
 export default function LandingPage() {
   return (
@@ -39,7 +38,7 @@ export default function LandingPage() {
           </div>
           <div className="flex-1 flex justify-center">
             <Image
-              src={auth}
+              src="auth.png"
               alt="Authentication illustration"
               className="rounded-lg shadow-md"
               width={400}
