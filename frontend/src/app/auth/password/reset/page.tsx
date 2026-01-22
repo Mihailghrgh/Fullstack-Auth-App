@@ -3,6 +3,8 @@
 import ErrorBlock from "@/components/utils/ErrorBlock";
 import ResetPasswordForm from "@/components/utils/resetPasswordForm";
 import { checkResetCode } from "@/lib/api";
+export const dynamic = "force-dynamic";
+
 async function page({
   searchParams,
 }: {
