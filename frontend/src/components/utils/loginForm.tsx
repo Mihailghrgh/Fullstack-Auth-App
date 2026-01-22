@@ -74,13 +74,13 @@ export function ProfileForm() {
       }
     } catch (error: unknown) {
       console.log(error);
-
+      const status = error?.status ?? 500;
+      const message = error?.message ?? "Something went wrong";
+      useCreateError.getState().setErrorObject(status, message);
       if (axios.isAxiosError(error)) {
-        const status = error.response?.status ?? 500;
-        const message = error.response?.data?.message ?? "Something went wrong";
+        const status = error?.status ?? 500;
+        const message = error?.message ?? "Something went wrong";
         useCreateError.getState().setErrorObject(status, message);
-      } else {
-        useCreateError.getState().setErrorObject(500, "Unknown error occurred");
       }
     }
   }
