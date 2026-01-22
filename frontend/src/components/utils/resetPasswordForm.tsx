@@ -30,7 +30,8 @@ import { TriangleAlert } from "lucide-react";
 import ResetPasswordConfirmation from "./resetPasswordSuccess";
 import { Params } from "next/dist/server/request/params";
 import FormSuccess from "./FormSuccess";
-
+import { useCreateError } from "./store";
+import { useEffect } from "react";
 const resetPasswordSchema = z
   .object({
     password: z
@@ -48,24 +49,32 @@ const resetPasswordSchema = z
   });
 
 const ResetPasswordForm = ({ code }: { code: string }) => {
-  const [error, setError] = useState<boolean>(false);
   const [activePage, setActivePage] = useState<boolean>(false);
+  const error = useCreateError((state) => state.error);
+
   const resetPasswordForm = useForm<z.infer<typeof resetPasswordSchema>>({
     resolver: zodResolver(resetPasswordSchema),
     defaultValues: { password: "", confirmPassword: "" },
   });
 
+  const { clearError } = useCreateError();
+  useEffect(() => {
+    clearError();
+  }, []);
+
   const onSubmit = async (values: z.infer<typeof resetPasswordSchema>) => {
     try {
       const data = { password: values.password, verificationCode: code };
       const response = await resetPassword(data);
-
-      if (response.status === 201) {
-        setActivePage((data) => !data);
+      if (response.status === 200) {
+        setActivePage(true);
       }
     } catch (error) {
+      useCreateError.getState().clearError();
       console.log(error);
-      setError((data) => !data);
+      const status = error.response?.status ?? 500;
+      const message = error.response?.data?.message ?? "Something went wrong";
+      useCreateError.getState().setErrorObject(status, message);
     }
   };
   return activePage === false ? (
@@ -75,7 +84,8 @@ const ResetPasswordForm = ({ code }: { code: string }) => {
           <CardHeader className="space-y-1">
             {error && (
               <div className="bg-red-300 rounded-xl w-fit border-12 border-red-300 flex justify-center  text-center items-center">
-                <TriangleAlert className="h-4 w-4" /> <p> Error!</p>{" "}
+                <TriangleAlert className="h-4 w-4" />{" "}
+                <p> {error.message}</p>{" "}
               </div>
             )}
             <CardTitle className="text-2xl font-bold text-center">

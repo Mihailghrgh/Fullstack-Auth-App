@@ -77,8 +77,7 @@ function ForgotPasswordForm() {
           {error && (
             <div className="flex justify-center">
               <div className="bg-red-300 rounded-xl w-fit border-12 border-red-300 flex justify-center  text-center items-center transition-opacity duration-300">
-                <TriangleAlert className="h-4 w-4" />{" "}
-                <p> Email does not exist, Please try again!</p>
+                <TriangleAlert className="h-4 w-4" /> <p> {error.message}</p>
               </div>
             </div>
           )}
