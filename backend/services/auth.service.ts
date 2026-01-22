@@ -75,7 +75,7 @@ export const createAccount = async (data: createAccountParams) => {
     })
     .returning();
 
-  const url = `http://localhost:3000/email/verify/${verificationCode[0].id}`;
+  const url = `${process.env.AP_ORIGIN}email/verify/${verificationCode[0].id}`;
   //send verification email
   await sendMail({
     to: user[0].email,
