@@ -20,7 +20,7 @@ import { useRouter } from "next/navigation";
 import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { useCreateError } from "./store";
-
+import { useRouter } from "next/navigation";
 type ErrorMsg = {
   status: number;
   message: string;
@@ -40,11 +40,11 @@ export const loginFormSchema = z.object({
 export function ProfileForm() {
   const [errMsg, setErrMsg] = useState<string>("");
   const { clearError } = useCreateError();
-
+  const router = useRouter();
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const data = await API.get("/user");
+        const data = await axios.get("/user");
         router.push("/auth/user");
       } catch (error) {
         // Not authenticated, stay on login page
