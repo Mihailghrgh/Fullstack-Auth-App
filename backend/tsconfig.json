@@ -24,5 +24,13 @@
       "next.config.mjs",
       "types/**/*.d.ts"
     ],
-    "exclude": ["node_modules"]
+    "exclude": [
+      "node_modules",
+      "dist",
+      "build",
+      ".next",
+      "coverage",
+      "venv",
+      "venv_server"
+    ]
   }

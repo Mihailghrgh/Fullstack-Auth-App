@@ -41,19 +41,19 @@ export function ProfileForm() {
   const [errMsg, setErrMsg] = useState<string>("");
   const { clearError } = useCreateError();
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        await API.get("/user");
-        router.push("/auth/user");
-      } catch (error) {
-        // Not authenticated, stay on login page
-      }
-    };
+  // useEffect(() => {
+  //   const checkAuth = async () => {
+  //     try {
+  //       await API.get("/user");
+  //       router.push("/auth/user");
+  //     } catch (error) {
+  //       // Not authenticated, stay on login page
+  //     }
+  //   };
 
-    checkAuth();
-  }, [router]);
-  
+  //   checkAuth();
+  // }, [router]);
+
   const form = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
