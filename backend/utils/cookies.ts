@@ -5,7 +5,7 @@ export const refreshPATH = "/auth/refresh";
 const secure = process.env.NODE_ENV !== "development";
 
 const defaultToken: CookieOptions = {
-  sameSite: "none",
+  sameSite: "lax",
   httpOnly: true,
   secure: true,
 };
