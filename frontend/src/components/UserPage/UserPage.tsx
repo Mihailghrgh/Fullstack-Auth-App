@@ -23,8 +23,6 @@ export default function UserPage() {
   const handleLogout = async () => {
     const response = await logout();
 
-    console.log(response);
-
     if (response.status === 200) {
       router.push("/");
     }

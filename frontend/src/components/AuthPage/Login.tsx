@@ -10,8 +10,11 @@ import {
 import { ProfileForm } from "@/components/utils/loginForm";
 import { useCreateError } from "../utils/store";
 import { TriangleAlert } from "lucide-react";
+import { useRouter } from "next/navigation";
+
 export default function Login() {
   const err = useCreateError((state) => state.error);
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <Card className="w-full max-w-md">
