@@ -1,7 +1,7 @@
 "use server";
 import Login from "@/components/AuthPage/Login";
 import { cookies } from "next/headers";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 async function LoginPage() {
   const cookieStore = await cookies();
   const router = useRouter();
