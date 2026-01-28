@@ -2,7 +2,7 @@ import axios from "axios";
 import { redirect } from "next/navigation";
 
 const options = {
-  baseURL: "http://localhost:5000",
+  baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
 };
 const API = axios.create(options);
 
