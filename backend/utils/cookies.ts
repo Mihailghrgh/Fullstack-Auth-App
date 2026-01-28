@@ -8,7 +8,6 @@ const defaultToken: CookieOptions = {
   sameSite: "none",
   httpOnly: true,
   secure: true,
-  domain: "https://fullstack-auth-app-six.vercel.app",
 };
 type Params = {
   res: Response;
