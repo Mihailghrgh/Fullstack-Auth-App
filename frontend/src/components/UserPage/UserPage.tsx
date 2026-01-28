@@ -13,12 +13,14 @@ import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import PreviousUserSessions from "./PreviousUserSessions";
 import { logout } from "@/lib/api";
+import { useEffect } from "react";
 
 type DetailType = "sessions" | "logins" | null;
 
 export default function UserPage() {
   const [activeDetail, setActiveDetail] = useState<DetailType>(null);
   const router = useRouter();
+
 
   const handleLogout = async () => {
     const response = await logout();

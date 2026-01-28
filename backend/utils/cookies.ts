@@ -22,12 +22,13 @@ export const clearCookiesOptions = (): CookieOptions => ({
 export const getAccessTokenCookieOptions = (): CookieOptions => ({
   ...defaultToken,
   expires: fifteenMinutesFromNow(),
+  path: "/",
 });
 
 export const getRefreshTokenCookieOptions = (): CookieOptions => ({
   ...defaultToken,
   expires: thirtyDaysFromNow(),
-  path: refreshPATH,
+  path: "/auth/refresh",
 });
 
 export const setAuthCookies = ({ res, accessToken, refreshToken }: Params) => {
