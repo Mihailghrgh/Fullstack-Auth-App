@@ -7,7 +7,7 @@ const secure = process.env.NODE_ENV !== "development";
 const defaultToken: CookieOptions = {
   sameSite: "lax",
   httpOnly: true,
-  secure: false,
+  secure: true,
 };
 type Params = {
   res: Response;
