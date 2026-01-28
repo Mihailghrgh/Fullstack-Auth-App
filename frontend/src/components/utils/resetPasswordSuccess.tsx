@@ -29,8 +29,8 @@ export default function ResetPasswordConfirmation() {
         </CardHeader>
         <CardContent className="space-y-4 text-center">
           <p className="text-gray-600">
-            Please check your inbox and click on the verification link to
-            reset your password.
+            Please check your inbox and click on the verification link to reset
+            your password.
           </p>
           <p className="text-sm text-gray-500">
             If you don't see the email, please check your spam folder or request
@@ -40,9 +40,6 @@ export default function ResetPasswordConfirmation() {
         <CardFooter className="flex flex-col space-y-2">
           <Button className="w-full hover:cursor-pointer" asChild>
             <Link href="/">Return to Home</Link>
-          </Button>
-          <Button variant="outline" className="w-full hover:cursor-pointer">
-            <Link href="#">Resend Verification Email</Link>
           </Button>
         </CardFooter>
       </Card>
